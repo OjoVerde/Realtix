@@ -1,0 +1,25 @@
+version: '3.9'
+
+services:
+  db:
+    build: ./DB
+    container_name: DB-postgis
+    environment:
+      POSTGRES_DB: ips_bogota
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: F%&C&3L88bmZ7Q2
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./DB/docker-data:/var/lib/postgresql/data
+
+  web:
+    image: vulhub/geoserver:2.22.1
+    container_name: geoserver
+    depends_on:
+      - db
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./GeoServer/startup.sh:/startup.sh
+    command: bash /startup.sh

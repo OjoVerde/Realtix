@@ -1,0 +1,24 @@
+# Carga de imagen postgres y potgis
+FROM postgis/postgis:12-3.4-alpine
+
+# agregan paquetes necesarios para la ejecución de scripts y transformación de shapefiles
+RUN apk add --no-cache gettext
+
+# Copian los archivos SQL ejecutables para agregar el esquema y los usuarios
+COPY ./app/ /docker-entrypoint-initdb.d/
+RUN chown -R root:root /docker-entrypoint-initdb.d/
+
+# Se copian todos los datos espaciales relevantes
+COPY ./data/ /usr/src/shapefiles/
+
+# Se transforma el ShapeFile de consultorios pediatricos a un formato SQL, para la posterior carga a la base de datos
+RUN shp2pgsql -s 4326 -I /usr/src/shapefiles/consultorios_pediatria.shp pediatria.GEO_consultorios_pediatria > /docker-entrypoint-initdb.d/consultorios_pediatria.sql
+
+# Se transforma el ShapeFile de Localidades a un formato SQL, para la posterior carga a la base de datos
+RUN shp2pgsql -s 4326 -I /usr/src/shapefiles/localidad.shp pediatria.GEO_localidades > /docker-entrypoint-initdb.d/localidades.sql
+
+# Se transforma el ShapeFile de UPZ a un formato SQL, para la posterior carga a la base de datos
+RUN shp2pgsql -s 4326 -I /usr/src/shapefiles/upl.shp pediatria.GEO_UPL > /docker-entrypoint-initdb.d/upl.sql
+
+# Se transforma el ShapeFile de UPZ a un formato SQL, para la posterior carga a la base de datos
+RUN shp2pgsql -s 4326 -I /usr/src/shapefiles/upz.shp pediatria.GEO_UPZ > /docker-entrypoint-initdb.d/upz.sql
