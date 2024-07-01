@@ -14,12 +14,12 @@ services:
       - ./DB/docker-data:/var/lib/postgresql/data
 
   web:
-    image: vulhub/geoserver:2.22.1
+    image: oscarfonts/geoserver:latest
     container_name: geoserver
     depends_on:
       - db
     ports:
       - "8080:8080"
     volumes:
-      - ./GeoServer/startup.sh:/startup.sh
-    command: bash /startup.sh
+      - ./GeoServer/data_dir:/var/local/geoserver
+      - ./GeoServer/map_style:/var/local/geoserver/map_style
