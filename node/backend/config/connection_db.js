@@ -1,12 +1,12 @@
-const { Sequelize } = require('sequelize');
+import {Sequelize} from 'sequelize'
 
-const postgres_db = new Sequelize('ips_bogota', 'web_editor_user', 'Fcf#Vo43vFk&iCfi', {
+export const postgres_db = new Sequelize('ips_bogota', 'web_editor_user', 'Fcf#Vo43vFk&iCfi', {
     dialect: 'postgres',
     host: '192.168.68.2',
     port: 5432
 });
 
-async function testConnection() {
+export async function testConnection() {
     try {
         await postgres_db.authenticate();
         console.log('Connection has been established successfully.');
@@ -17,4 +17,4 @@ async function testConnection() {
     }
 }
 
-module.exports = { postgres_db, testConnection };
+// module.exports = { postgres_db, testConnection };

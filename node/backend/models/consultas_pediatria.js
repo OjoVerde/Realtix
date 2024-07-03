@@ -1,5 +1,4 @@
-const { executeQuery } = require('./query');
-
+import { executeQuery } from "./query.js";
 
 async function GetPediatriaIPS(loccodigo, codigo_upl, codigo_upz, clasep) {
     let query = `

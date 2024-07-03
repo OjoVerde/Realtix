@@ -1,0 +1,142 @@
+<main class="main">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div id="nav" class="container">
+      <a class="navbar-brand">Consultorios de pediatría</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-3">
+  
+          <li class="me-3">
+            <div class="btn-group">
+              <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                Localidad
+              </button>
+              <ul class="dropdown-menu selector" >
+                <li *ngFor="let loc of localidades; let i = index" (click)="onCLickLoc(loc.loccodigo)"
+                value="{{loc.loccodigo}}"
+                > 
+                  {{loc.locnombre}}</li>
+              </ul>
+            </div>
+          </li>
+  
+  
+          <li class="me-3">
+            <div class="btn-group">
+              <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                UPL
+              </button>
+              <ul class="dropdown-menu selector">
+                <li *ngFor="let loc of upl; let i = index" (click)="onCLickUPL(loc.codigo_upl)"
+                value="{{loc.codigo_upl}}"
+                > 
+                  {{loc.nombre_upl}}</li>
+              </ul>
+            </div>
+          </li>
+  
+  
+          <li class="me-3">
+            <div class="btn-group">
+              <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                UPZ
+              </button>
+              <ul class="dropdown-menu selector">
+                <li *ngFor="let loc of upz; let i = index" (click)="onCLickUPZ(loc.codigo_upz)"
+                value="{{loc.codigo_upz}}"
+                > 
+                  {{loc.nombre_upz}}</li>
+              </ul>
+            </div>
+          </li>       
+  
+  
+          <li class="me-3">
+            <div class="btn-group">
+              <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                Tipo de institución
+              </button>
+              <ul class="dropdown-menu selector">
+                <li (click)="onCLickSector('Pública')">Pública</li>
+                <li (click)="onCLickSector('Privada')">Privada</li>
+              </ul>
+            </div>
+          </li>
+  
+        </ul>
+  
+      </div>
+    </div>
+  </nav>
+  <div id="mapcontainer" class="container-fluid">
+    <div class="row">
+        <div id="map" class="map col-md-8">
+            <script src="/map.js"></script>
+        </div>
+            
+        <div id="details" class="col-md-4">
+            
+          <div class="d-flex justify-content-center mb-5 mt-2">
+          <strong> Crea un nuevo consultorio </strong>
+          </div>
+
+          <div class='d-flex justify-content-between mt-3'>
+            <label for="identify">Identifica: </label>
+            <input id="identify" type="number" [formControl]="identify">
+          </div>
+
+          <div class='d-flex justify-content-between mt-3'>
+            <label for="code">Código: </label>
+            <input id="code" type="text" [formControl]="code">
+          </div>
+
+          <div class='d-flex justify-content-between mt-3'>
+            <label for="name">Nombre: </label>
+            <input id="name" type="text" [formControl]="name">
+          </div>
+
+          <div class='d-flex justify-content-between mt-3'>
+            <label for="tel">Telefono: </label>
+            <input id="tel" type="number" [formControl]="tel">
+          </div>
+
+          <div class='d-flex justify-content-between mt-3'>
+            <label for="address">Dirección: </label>
+            <input id="address" type="text" [formControl]="address">
+          </div>
+
+          <div class='d-flex justify-content-between mt-3'>
+            <label for="email">Correo electrónico: </label>
+            <input id="email" type="text" [formControl]="email">
+          </div>
+
+          <div class='d-flex justify-content-between mt-3'>
+            <label for="inst_type">Tipo institución: </label>
+            <select id="inst_type" [formControl]="inst_type"><option>Pública</option><option>Privada</option></select>
+          </div>
+
+          <div class='d-flex justify-content-between mt-3'>
+            <label for="lon">Longitud: </label>
+            <input id="lon" type="number" [formControl]="lon">
+          </div>
+
+          <div class='d-flex justify-content-between mt-3'>
+            <label for="lat">Latitud: </label>
+            <input id="lat" type="number" [formControl]="lat">
+          </div>
+
+          <div class="d-flex justify-content-center mt-5">
+            <button (click)="submitForm()" class="btn btn-success"> Enviar </button>
+          </div>
+
+        </div>
+    </div>
+</div>
+
+</main>
+
+
+
+<router-outlet />

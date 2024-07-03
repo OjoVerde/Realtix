@@ -1,5 +1,4 @@
-const { executeQuery } = require('./query');
-
+import { executeQuery } from "./query";
 /**
 * Get all localidades.
 */

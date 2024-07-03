@@ -5,6 +5,7 @@ services:
     image: node:lts-alpine3.20
     container_name: node-js
     ports:
+      - "4200:4200" #-->angular
       - "3000:3000"
     volumes:
       - .:/app
