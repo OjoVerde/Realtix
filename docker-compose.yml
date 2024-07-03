@@ -13,7 +13,7 @@ services:
     volumes:
       - ./DB/docker-data:/var/lib/postgresql/data
 
-  web:
+  geoserver:
     image: oscarfonts/geoserver:latest
     container_name: geoserver
     environment:
@@ -31,10 +31,11 @@ services:
       - ./GeoServer/map_style:/var/local/geoserver/map_style
       - ./GeoServer/web.xml:/usr/local/geoserver/WEB-INF/web.xml
 
-  backend:
+  app:
     image: node:lts-alpine3.20
     container_name: node-js
     depends_on:
+      - geoserver
       - db
     ports:
       - "4200:4200"
