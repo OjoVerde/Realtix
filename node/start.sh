@@ -1,0 +1,1 @@
+npm run dev & cd consultorios_front && npm start

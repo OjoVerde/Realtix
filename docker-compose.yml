@@ -30,3 +30,16 @@ services:
       - ./GeoServer/data_dir:/var/local/geoserver
       - ./GeoServer/map_style:/var/local/geoserver/map_style
       - ./GeoServer/web.xml:/usr/local/geoserver/WEB-INF/web.xml
+
+  backend:
+    image: node:lts-alpine3.20
+    container_name: node-js
+    depends_on:
+      - db
+    ports:
+      - "4200:4200"
+      - "3000:3000"
+    volumes:
+      - ./node:/app
+    command: sh start.sh
+    working_dir: /app
