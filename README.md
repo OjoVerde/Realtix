@@ -65,12 +65,12 @@ services:
 
 ## Pasos para la Ejecución del Proyecto
 
-1. **Descomprime el archivo .zip enviado**, este archivo contiene todas las carpetas y configuraciones listas para ser desplegadas por docker, no se requieren configuraciones adicionales. [link](https://1drv.ms/u/c/b5fc889227dbcb16/EScBT7P8bq9GujlYfGMVb_UBFHNoDCAg8yy_rZXNUADzkA?e=BB8ykX)
+1. **Descomprime el archivo .zip enviado**, este archivo contiene todas las carpetas y configuraciones listas para ser desplegadas por docker, no se requieren configuraciones adicionales
    - Alternativa, **Clona el Repositorio** del proyecto. Esto conlleva una desventaja y relacionada con el almacenamiento de las configuraciones y capas alojadas en el servidor de geoserver, que incluyen los datos geográficos por lo que se sugiere utilizar el archivo **.zip**
-    ```sh
-    git clone https://github.com/OjoVerde/Realtix
-    cd
-    ```
+```sh
+   git clone https://github.com/OjoVerde/Realtix
+   cd
+   ```
 2. **Construye los Contenedores** Ejecuta el siguiente comando para construir y levantar los contenedores definidos en el archivo `docker-compose.yml`.
    ```sh
    docker-compose up --build
